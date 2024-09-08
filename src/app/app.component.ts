@@ -6,11 +6,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Plantas', url: '/folder/Plantas', icon: 'leaf' },
-    { title: 'Horario', url: '/folder/Horario', icon: 'time' },
-    { title: 'Ayudas', url: '/folder/Ayudas', icon: 'help' },
-    { title: 'Favoritos', url: '/folder/Favoritos', icon: 'heart' },
+    { title: 'Página Principal', url: '/home', icon: 'home' },
+    { title: 'Añadir Planta', url: '/anadir', icon: 'leaf' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}
 }
