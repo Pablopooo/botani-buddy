@@ -5,3 +5,17 @@ ion-toolbar{
 ion-title{
    color: var(--ion-color-botani-contrast);
 }
+
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calendar-container {
+    margin-top: 20px; 
+    ion-datetime {
+      width: 100%;
+      max-width: 500px; 
+    }
+  }
