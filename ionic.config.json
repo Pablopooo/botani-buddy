@@ -1,0 +1,8 @@
+{
+  "name": "BotaniBuddy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "fe201cbe"
+}
