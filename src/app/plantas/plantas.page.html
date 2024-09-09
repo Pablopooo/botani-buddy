@@ -11,5 +11,18 @@
     </ion-toolbar>
   </ion-header>
 
-  
+<ion-content>
+  <ion-card *ngFor="let planta of plantas">
+    <ion-img [src]="planta.imagen" class="imagen-animada"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ planta.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ planta.descripcion }}
+    </ion-card-content>
+  </ion-card>
+    <div id="container">
+      <button (click)="goToAnadir()" class="btnhome" size="large">Añadir
+      </button>
+    </div>
 </ion-content>
