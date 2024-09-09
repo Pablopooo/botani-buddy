@@ -1,36 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlantaService } from './../plantanueva.service';
+
 @Component({
   selector: 'app-plantas',
   templateUrl: './plantas.page.html',
   styleUrls: ['./plantas.page.scss'],
 })
 export class PlantasPage implements OnInit {
+  plantas: any[] = [];
 
-  plantas = [
-    {
-      nombre: 'Mauricio',
-      descripcion: 'Mi linda plantita llamada Mauricio',
-      imagen: 'assets/icon/mauricio.webp'
-    },
-    {
-      nombre: 'Aloe Verita',
-      descripcion: 'Mi plantita de Aloe Vera pa las quemaduras',
-      imagen: 'assets/icon/aloe.webp'
-    },
-    {
-      nombre: 'Tulipancito',
-      descripcion: 'Nunca mires a un tulipan a los ojos',
-      imagen: 'assets/icon/tuli.jpg'
-    }
-  ];
+  constructor(private router: Router, private plantaService: PlantaService) { }
 
-  constructor(private router: Router) { }
   ngOnInit() {
+    this.plantas = this.plantaService.getPlantas();
   }
 
   goToAnadir(){
-    this.router.navigate(['/anadir'])
+    this.router.navigate(['/anadir']);
   }
-  
 }

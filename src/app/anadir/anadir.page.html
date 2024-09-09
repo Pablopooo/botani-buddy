@@ -1,14 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar color="botani">
-    <ion-title>Añadir</ion-title>
+    <ion-title>Añadir Planta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <div id="container">
-    <button (click)="goToHome()" class="btnhome" size="large">
-      <ion-icon size="large" name="arrow-back-circle-outline"></ion-icon>
-    </button>
-  </div>
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="planta.nombre" name="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo</ion-label>
+      <ion-select [(ngModel)]="planta.tipo" name="tipo">
+        <ion-select-option *ngFor="let tipo of tiposDePlantas" [value]="tipo">{{ tipo }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="planta.descripcion" name="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Foto</ion-label>
+      <ion-button (click)="takePhoto()">Tomar Foto</ion-button>
+    </ion-item>
+    <ion-item *ngIf="photo">
+      <img [src]="photo" />
+    </ion-item>
+    <ion-button expand="full" type="submit">Guardar</ion-button>
+  </form>
 </ion-content>
