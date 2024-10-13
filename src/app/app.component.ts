@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+import { MenuController } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,5 +14,15 @@ export class AppComponent {
     { title: 'Añadir Planta', url: '/anadir', icon: 'leaf' },
     { title: 'Ayudas prácticas', url: '/ayudas', icon: 'help' },
   ];
-  constructor() {}
+
+  constructor(public authService: AuthService, private menuCtrl: MenuController) {}
+
+  ngOnInit() {
+    this.toggleMenu();
+  }
+
+  toggleMenu() {
+    this.menuCtrl.enable(this.authService.isLoggedIn());
+  }
 }
+

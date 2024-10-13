@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,12 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loginForm!: FormGroup; // Añadir el operador !
+  loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private navCtrl: NavController) {}
+  constructor(private fb: FormBuilder, private navCtrl: NavController, private authService: AuthService, private menuCtrl: MenuController) {}
 
   ngOnInit() {
+    this.menuCtrl.enable(false);
     this.loginForm = this.fb.group({
       usuario: ['', [Validators.required]],
       contraseña: ['', [Validators.required, Validators.minLength(6)]]
@@ -23,12 +25,10 @@ export class LoginPage implements OnInit {
     if (this.loginForm.valid) {
       const { usuario, contraseña } = this.loginForm.value;
       
-      // Validación simple de usuario y contraseña
-      if (usuario === 'admin' && contraseña === '123456') {
-        // Redirigir a otra página en caso de éxito
+      if (this.authService.login(usuario, contraseña)) {
+        this.menuCtrl.enable(true);
         this.navCtrl.navigateForward('/home');
       } else {
-        // Mostrar un mensaje de error
         alert('Usuario o contraseña incorrectos');
       }
     }
