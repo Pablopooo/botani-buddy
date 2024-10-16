@@ -6,11 +6,15 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private isAuthenticated = false;
 
-  constructor() {}
+  constructor() {
+    // Comprueba el estado de autenticación almacenado en localStorage
+    this.isAuthenticated = !!localStorage.getItem('userToken');
+  }
 
   login(usuario: string, contraseña: string): boolean {
     if (usuario === 'admin' && contraseña === '123456') {
       this.isAuthenticated = true;
+      localStorage.setItem('userToken', 'token'); // Almacena el token en localStorage
       return true;
     }
     return false;
@@ -18,6 +22,7 @@ export class AuthService {
 
   logout() {
     this.isAuthenticated = false;
+    localStorage.removeItem('userToken'); // Elimina el token de localStorage
   }
 
   isLoggedIn(): boolean {
