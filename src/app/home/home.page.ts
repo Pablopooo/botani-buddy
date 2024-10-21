@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  usuario: string | null = '';
 
   constructor() { }
 
   ngOnInit() {
+    this.usuario = localStorage.getItem('usuario');
   }
 
 }

@@ -15,6 +15,10 @@ export class PerenualService {
     return this.http.get(`${this.apiUrl}?key=${this.token}&page=${page}`);
   }
 
+  searchPlants(searchTerm: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}?key=${this.token}&q=${searchTerm}`);
+  }
+
   getPlantDetails(plantId: string): Observable<any> {
     return this.http.get(`https://perenual.com/api/species/details/${plantId}?key=${this.token}`);
   }

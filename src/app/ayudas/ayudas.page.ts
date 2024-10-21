@@ -42,10 +42,17 @@ export class AyudasPage implements OnInit {
   }
 
   filterPlants() {
-    const searchTermLower = this.searchTerm.toLowerCase();
-    this.filteredPlants = this.plants.filter(plant =>
-      plant.common_name.toLowerCase().includes(searchTermLower)
-    );
+    if (this.searchTerm.trim() === '') {
+      this.filteredPlants = this.plants;
+      return;
+    }
+    
+    this.perenualService.searchPlants(this.searchTerm).subscribe(data => {
+      this.filteredPlants = data.data.map((plant: Plant) => ({
+        ...plant,
+        image_url: plant.default_image ? plant.default_image.thumbnail : 'assets/placeholder.png'
+      }));
+    });
   }
 
   showDetails(plantId: string) {

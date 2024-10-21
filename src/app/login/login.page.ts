@@ -27,6 +27,7 @@ export class LoginPage implements OnInit {
       
       if (this.authService.login(usuario, contraseña)) {
         this.menuCtrl.enable(true);
+        localStorage.setItem('usuario', usuario);
         this.navCtrl.navigateForward('/home');
       } else {
         alert('Usuario o contraseña incorrectos');
