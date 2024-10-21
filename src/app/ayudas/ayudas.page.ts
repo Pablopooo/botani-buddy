@@ -1,35 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PerenualService } from '../perenual.service';
+import { Plant } from '../models/plant.model';
+
 @Component({
   selector: 'app-ayudas',
   templateUrl: './ayudas.page.html',
   styleUrls: ['./ayudas.page.scss'],
 })
 export class AyudasPage implements OnInit {
+  plants: Plant[] = [];
+  filteredPlants: Plant[] = [];
+  searchTerm: string = '';
+  page: number = 1;
+  selectedPlant: Plant | null = null;
 
-  plantas = [
-    {
-      nombre: '8 Tips para tu Aloe Vera',
-      descripcion: 'Buenos consejos para mantener tu plantita sana y bonita',
-      imagen: 'assets/icon/alooo.jpg'
-    },
-    {
-      nombre: '¿Cual deberia ser mi primera planta?',
-      descripcion: 'A todos nos gustaria poseer una planta, pero a veces no sabemos por cual empezar, y si ya tienes una cual deberia seguir.',
-      imagen: 'assets/icon/pensando.avif'
-    },
-    {
-      nombre: '¿Que planta de PVZ eres según tu jardín de hogar?',
-      descripcion: '¿Algúna vez te haz preguntado que planta de pvz serías según tu coleccion de plantas hogareñas?, yo tampoco',
-      imagen: 'assets/icon/pvz.avif'
-    }
-  ];
+  constructor(
+    private perenualService: PerenualService,
+    private router: Router // Inyectar el servicio de enrutamiento
+  ) {}
 
-  constructor(private router: Router) { }
   ngOnInit() {
+    this.loadPlants();
   }
 
-  goToAnadir(){
-    this.router.navigate(['/home'])
+  loadPlants(event?: any) {
+    this.perenualService.getPlants(this.page).subscribe(data => {
+      const newPlants = data.data.map((plant: Plant) => ({
+        ...plant,
+        image_url: plant.default_image ? plant.default_image.thumbnail : 'assets/placeholder.png'
+      }));
+      this.plants = [...this.plants, ...newPlants];
+      this.filteredPlants = [...this.plants];
+
+      if (event) {
+        event.target.complete();
+      }
+
+      this.page++;
+    });
+  }
+
+  filterPlants() {
+    const searchTermLower = this.searchTerm.toLowerCase();
+    this.filteredPlants = this.plants.filter(plant =>
+      plant.common_name.toLowerCase().includes(searchTermLower)
+    );
+  }
+
+  showDetails(plantId: string) {
+    this.router.navigate(['/plant-details', plantId]); // Usar el servicio de enrutamiento
   }
 }
