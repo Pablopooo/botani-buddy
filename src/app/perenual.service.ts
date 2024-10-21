@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PerenualService {
   private apiUrl = 'https://perenual.com/api/species-list';
-  private token = 'sk-A4b1671598d1ee0a97352'; // Reemplaza con tu token
+  private token = 'sk-FKcS671641fa55f797360'; // Reemplaza con tu token
 
   constructor(private http: HttpClient) {}
 
