@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
         this.navCtrl.navigateForward('/home');
       } else {
         alert('Usuario o contraseña incorrectos');
-      }
+      }+2
     }
   }
 }

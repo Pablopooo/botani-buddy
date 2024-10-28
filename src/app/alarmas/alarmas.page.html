@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="botani">
+    <ion-title>Alarmas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Alarmas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let alarma of alarmas">
+      <ion-label>
+        <h2>{{ alarma.title }}</h2>
+        <p>{{ alarma.body }}</p>
+        <p><strong>Día:</strong> {{ alarma.schedule.on.weekday }}</p>
+        <p><strong>Hora:</strong> {{ alarma.schedule.on.hour }}:{{ alarma.schedule.on.minute }}</p>
+        <p><strong>Repetir:</strong> {{ alarma.schedule.repeats ? 'Sí' : 'No' }}</p>
+      </ion-label>
+      <ion-toggle [checked]="alarma.enabled" (ionChange)="toggleAlarma(alarma.id, $event.detail.checked)"></ion-toggle>
+      <ion-button fill="clear" color="danger" (click)="confirmDeleteAlarma(alarma.id)">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -13,6 +13,7 @@ export class AppComponent {
     { title: 'Mis Plantas', url: '/plantas', icon: 'flower' },
     { title: 'Añadir Planta', url: '/anadir', icon: 'leaf' },
     { title: 'Ayudas prácticas', url: '/ayudas', icon: 'help' },
+    { title: 'Alarmas', url: '/alarmas', icon: 'alarm' },
   ];
 
   constructor(

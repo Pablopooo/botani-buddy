@@ -29,15 +29,13 @@ export class AyudasPage implements OnInit {
     this.perenualService.getPlants(this.page).subscribe(data => {
       const newPlants = data.data.map((plant: Plant) => ({
         ...plant,
-        image_url: plant.default_image ? plant.default_image.thumbnail : 'assets/placeholder.png'
+        image_url: plant.image_url ? plant.image_url : 'assets/placeholder.png'
       }));
       this.plants = [...this.plants, ...newPlants];
       this.filteredPlants = [...this.plants];
-
       if (event) {
         event.target.complete();
       }
-
       this.page++;
     }, (error: any) => {
       if (error.status === 429) {
@@ -52,16 +50,14 @@ export class AyudasPage implements OnInit {
       this.filteredPlants = this.plants;
       return;
     }
-
     if (this.cache.has(this.searchTerm)) {
       this.filteredPlants = this.cache.get(this.searchTerm) || [];
       return;
     }
-
     this.perenualService.searchPlants(this.searchTerm).subscribe(data => {
       const results = data.data.map((plant: Plant) => ({
         ...plant,
-        image_url: plant.default_image ? plant.default_image.thumbnail : 'assets/placeholder.png'
+        image_url: plant.image_url ? plant.image_url : 'assets/placeholder.png'
       }));
       this.cache.set(this.searchTerm, results);
       this.filteredPlants = results;

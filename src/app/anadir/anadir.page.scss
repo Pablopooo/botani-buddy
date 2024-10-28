@@ -1,19 +1,86 @@
-ion-toolbar{
-    background-color: var(--ion-color-botani);
+ion-header {
+  ion-toolbar {
+    background-color: #388e3c; // Verde más oscuro
+    ion-title {
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.5rem; // Letras más grandes
+      text-transform: uppercase;
+    }
+  }
 }
 
-ion-title{
-    color: var(--ion-color-botani-contrast);
- }
+ion-content {
+  background-color: #e8f5e9; // Fondo ligeramente más oscuro
 
+  ion-item {
+    --background: #ffffff;
+    margin: 1.5rem; // Más espacio
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    ion-label {
+      color: #2e7d32;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      font-size: 1.2rem; // Letras más grandes
+      margin-bottom: 0.5rem; // Margen inferior para el texto del título
+      --padding-bottom: 0.5rem; // Espacio para no chocar con el campo
+    }
 
- ion-content {
-    --padding-start: 16px;
-    --padding-end: 16px;
+    ion-input,
+    ion-textarea {
+      --placeholder-color: #8d8d8d;
+      --color: #000000;
+      font-family: 'Roboto', sans-serif;
+      background: #ffffff;
+      padding: 0.5rem;
+      border: 1px solid #43a047; // Verde más oscuro
+      border-radius: 0.25rem;
+      font-size: 1rem; // Letras más grandes
+    }
+
+    ion-button {
+      --background: #43a047; // Verde más oscuro
+      --background-activated: #388e3c;
+      --background-focused: #2e7d32;
+      --background-hover: #2e7d32;
+      --color: #ffffff;
+      margin-top: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   }
-  
-  ion-img {
-    margin-top: 20px;
-    width: 100%;
-    height: auto;
+
+  .photo-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-button {
+      margin: 0 0 0 1rem;
+    }
   }
+
+  ion-button.expand-full {
+    margin-top: 1.5rem; // Más espacio
+    --background: #2e7d32; // Verde más oscuro
+    --background-activated: #276e24;
+    --background-focused: #1b5e20;
+    --background-hover: #1b5e20;
+    --color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem; // Letras más grandes
+    border-radius: 0.5rem;
+  }
+
+  .photo-preview {
+    margin: 1rem 0;
+    text-align: center;
+    img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

@@ -1,20 +1,26 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar color="botani">
-    <ion-title>{{ plant?.common_name }}</ion-title>
+    <ion-title>Detalles de la Planta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Detalles de la Planta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-card *ngIf="plant">
-    <img [src]="plant?.image_url" alt="{{ plant?.common_name }}">
+    <img [src]="plant.image_url" alt="{{ plant.common_name }}">
     <ion-card-header>
-      <ion-card-title>{{ plant?.common_name }}</ion-card-title>
-      <ion-card-subtitle>{{ plant?.scientific_name }}</ion-card-subtitle>
+      <ion-card-title>{{ plant.common_name }}</ion-card-title>
+      <ion-card-subtitle>{{ plant.scientific_name }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <p><strong>Familia:</strong> {{ plant?.family }}</p>
-      <p><strong>Género:</strong> {{ plant?.genus }}</p>
-      <p><strong>Descripción:</strong> {{ plant?.description }}</p>
+      <p><strong>Familia:</strong> {{ plant.family }}</p>
+      <p><strong>Género:</strong> {{ plant.genus }}</p>
+      <p><strong>Descripción:</strong> {{ plant.description }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
