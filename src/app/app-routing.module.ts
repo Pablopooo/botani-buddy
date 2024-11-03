@@ -14,7 +14,9 @@ const routes: Routes = [
   { path: 'plant-details/:id', loadChildren: () => import('./plant-details/plant-details.module').then(m => m.PlantDetailsPageModule), canActivate:[AuthGuard] },
   { path: 'plantas-mias/:id', loadChildren: () => import('./plantas-mias/plantas-mias.module').then(m => m.PlantasMiasPageModule), canActivate:[AuthGuard] },
   { path: 'alarmas', loadChildren: () => import('./alarmas/alarmas.module').then(m => m.AlarmasPageModule), canActivate:[AuthGuard] },
-  { path: '**', redirectTo: 'not-found' }
+  { path: 'reset-password', loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule), canActivate:[NoAuthGuard] },
+  { path: '**', redirectTo: 'not-found' },
+
 ];
 
 @NgModule({
