@@ -1,0 +1,64 @@
+ion-header {
+    --background: #4CAF50; /* Verde oscuro */
+    --color: white;
+  }
+  
+  ion-toolbar {
+    --background: #4CAF50; /* Verde oscuro */
+    --color: white;
+  }
+  
+  ion-title {
+    font-weight: bold;
+  }
+  
+  ion-content {
+    --background: #E8F5E9; /* Verde claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-item {
+    --background: transparent;
+    margin-bottom: 15px;
+  }
+  
+  ion-label {
+    color: #388E3C; /* Verde medio */
+  }
+  
+  ion-input {
+    --placeholder-color: #A5D6A7; /* Verde claro */
+    color: #388E3C; /* Verde medio */
+  }
+  
+  ion-button {
+    --background: #4CAF50; /* Verde oscuro */
+    --background-hover: #388E3C; /* Verde medio */
+    --background-activated: #2E7D32; /* Verde más oscuro */
+    --color: white;
+    margin-top: 20px;
+  }
+  
+  ion-button[color="secondary"] {
+    --background: #D32F2F; /* Rojo */
+    --background-hover: #C62828; /* Rojo oscuro */
+    --background-activated: #B71C1C; /* Rojo más oscuro */
+    --color: white;
+    margin-top: 20px; /* Igual que el botón de Login */
+  }
+  
+  ion-label[color="danger"] {
+    color: #D32F2F; /* Rojo */
+  }

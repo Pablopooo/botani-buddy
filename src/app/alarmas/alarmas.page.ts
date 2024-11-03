@@ -9,8 +9,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlarmasPage implements OnInit {
   alarmas: any[] = [];
+  noAlarmas: boolean = false; // Variable para indicar si no hay alarmas activas
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {
     this.loadAlarmas();
@@ -18,8 +19,13 @@ export class AlarmasPage implements OnInit {
 
   loadAlarmas() {
     const savedAlarmas = JSON.parse(localStorage.getItem('alarmas') || '[]');
-    this.alarmas = savedAlarmas;
+    this.alarmas = savedAlarmas.map((alarma: any) => ({
+      ...alarma,
+      schedule: alarma.schedule || { on: {}, repeats: false },
+      enabled: alarma.enabled !== undefined ? alarma.enabled : true,
+    }));
     console.log('Alarmas cargadas desde localStorage:', this.alarmas);
+    this.noAlarmas = this.alarmas.length === 0; // Actualizar el indicador de alarmas
   }
 
   async toggleAlarma(id: number, enable: boolean) {

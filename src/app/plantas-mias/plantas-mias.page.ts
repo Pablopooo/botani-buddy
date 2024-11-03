@@ -20,7 +20,7 @@ export class PlantasMiasPage implements OnInit {
     private route: ActivatedRoute,
     private plantaService: PlantaService,
     private alertController: AlertController
-  ) { }
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -52,33 +52,40 @@ export class PlantasMiasPage implements OnInit {
     console.log('setAlarm called');
     if (this.planta) {
       const [hour, minute] = this.hour.split(':').map(Number);
-      if (!isNaN(hour) && !isNaN(minute)) {
-        const dayOfWeek = this.days.map(day => this.getDayOfWeek(day));
+      if (!isNaN(hour) && !isNaN(minute) && this.days.length > 0) {
+        const existingAlarmas = JSON.parse(localStorage.getItem('alarmas') || '[]');
         
-        if (dayOfWeek.length > 0) {
-          const notifications = dayOfWeek.map(day => ({
-            title: 'Es hora de cuidar tu planta',
-            body: 'Es momento de cuidar tu planta ' + (this.planta ? this.planta.common_name : ''),
-            id: this.generateUniqueId(),
-            schedule: {
-              on: {
-                weekday: day,
-                hour,
-                minute,
-              },
-              repeats: this.isPeriodic,
-            }
-          }));
-          console.log('Notifications:', notifications);
-          await LocalNotifications.schedule({ notifications });
-          console.log(`Alarma configurada para la planta ${this.planta.common_name} a las ${this.hour}`);
-          this.saveAlarmas(notifications);
-          this.showConfirmation();
-        } else {
-          console.error('Seleccione al menos un día.');
+        // Verificar si ya existe una alarma para esta planta
+        const alarmaExistente = existingAlarmas.find((a: any) => a.plantaId === this.planta!.id);
+        if (alarmaExistente) {
+          console.error('Ya existe una alarma para esta planta.');
+          alert('Ya existe una alarma para esta planta.');
+          return;
         }
+
+        const notifications = this.days.map(day => ({
+          title: 'Es hora de cuidar tu planta',
+          body: 'Es momento de cuidar tu planta ' + (this.planta ? this.planta.common_name : ''),
+          id: this.generateUniqueId(),
+          plantaId: this.planta?.id,
+          schedule: {
+            on: {
+              weekday: this.getDayOfWeek(day),
+              hour,
+              minute,
+            },
+            repeats: this.isPeriodic,
+          }
+        }));
+        
+        console.log('Notifications:', notifications);
+        await LocalNotifications.schedule({ notifications });
+        console.log(`Alarma configurada para la planta ${this.planta.common_name} a las ${this.hour}`);
+        this.saveAlarmas(notifications);
+        this.showConfirmation();
       } else {
-        console.error('Invalid time value:', this.hour);
+        console.error('Seleccione al menos un día y asegúrese de que la hora es válida.');
+        alert('Seleccione al menos un día y asegúrese de que la hora es válida.');
       }
     }
   }

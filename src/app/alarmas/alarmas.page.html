@@ -11,13 +11,16 @@
     </ion-toolbar>
   </ion-header>
 
+  <div *ngIf="noAlarmas" class="no-alarmas">No hay alarmas activas</div> <!-- Mensaje de no alarmas -->
+   <ion-list *ngIf="!noAlarmas"></ion-list>
+
   <ion-list>
     <ion-item *ngFor="let alarma of alarmas">
       <ion-label>
         <h2>{{ alarma.title }}</h2>
         <p>{{ alarma.body }}</p>
-        <p><strong>Día:</strong> {{ alarma.schedule.on.weekday }}</p>
-        <p><strong>Hora:</strong> {{ alarma.schedule.on.hour }}:{{ alarma.schedule.on.minute }}</p>
+        <p *ngIf="alarma.schedule && alarma.schedule.on"><strong>Día:</strong> {{ alarma.schedule.on.weekday }}</p>
+        <p *ngIf="alarma.schedule && alarma.schedule.on"><strong>Hora:</strong> {{ alarma.schedule.on.hour }}:{{ alarma.schedule.on.minute }}</p>
         <p><strong>Repetir:</strong> {{ alarma.schedule.repeats ? 'Sí' : 'No' }}</p>
       </ion-label>
       <ion-toggle [checked]="alarma.enabled" (ionChange)="toggleAlarma(alarma.id, $event.detail.checked)"></ion-toggle>
