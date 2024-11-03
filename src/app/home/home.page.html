@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="botani">
     <ion-title>Página Principal</ion-title>
+    <ion-buttons slot="end">
+      <ion-label *ngIf="usuario">Bienvenido, {{ usuario }}</ion-label>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,8 +13,7 @@
       <ion-title color="botani-contrast" size="large">>Página Principal</ion-title>
     </ion-toolbar>
   </ion-header>
-
-
+  
   <ion-card>
     <ion-card-header>
       <ion-card-title>Tus plantas</ion-card-title>

@@ -1,25 +1,23 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar color="botani">
-    <ion-title>Ayudas Prácticas y Consejos</ion-title>
+    <ion-title>Ayudas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <h3 class="h3">Según tu jardín actual te puede interesar...</h3>
-  </div>
-  <ion-card *ngFor="let planta of plantas">
-    <ion-img [src]="planta.imagen" class="imagen-animada"></ion-img>
-    <ion-card-header>
-      <ion-card-title>{{ planta.nombre }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      {{ planta.descripcion }}
-    </ion-card-content>
-  </ion-card>
-    <div id="container">
-      <button (click)="goToAnadir()" class="btnhome" size="large">Saber más...
-      </button>
-    </div>
-</ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterPlants()"></ion-searchbar>
 
+  <ion-list>
+    <ion-item *ngFor="let plant of filteredPlants" (click)="showDetails(plant.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="plant.image_url" alt="{{ plant.common_name }}">
+      </ion-thumbnail>
+      <ion-label>{{ plant.common_name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPlants($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más plantas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

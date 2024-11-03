@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="botani">
+    <ion-title>Planta: {{ planta?.common_name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Planta: {{ planta?.common_name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <ion-label position="stacked">Días</ion-label>
+    <ion-select [(ngModel)]="days" multiple="true" okText="Ok" cancelText="Cancelar">
+      <ion-select-option value="sunday">Domingo</ion-select-option>
+      <ion-select-option value="monday">Lunes</ion-select-option>
+      <ion-select-option value="tuesday">Martes</ion-select-option>
+      <ion-select-option value="wednesday">Miércoles</ion-select-option>
+      <ion-select-option value="thursday">Jueves</ion-select-option>
+      <ion-select-option value="friday">Viernes</ion-select-option>
+      <ion-select-option value="saturday">Sábado</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Hora</ion-label>
+    <ion-input type="time" [(ngModel)]="hour"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Repetir</ion-label>
+    <ion-checkbox [(ngModel)]="isPeriodic"></ion-checkbox>
+  </ion-item>
+
+  <ion-button expand="full" (click)="setAlarm()">Fijar Alarma</ion-button>
+</ion-content>

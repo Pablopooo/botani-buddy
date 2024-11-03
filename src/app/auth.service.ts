@@ -12,7 +12,9 @@ export class AuthService {
   }
 
   login(usuario: string, contraseña: string): boolean {
-    if (usuario === 'admin' && contraseña === '123456') {
+    const storedPassword = localStorage.getItem('contraseña') || '123456';  // Usa '123456' si no hay una contraseña guardada
+
+    if (usuario === 'admin' && contraseña === storedPassword) {
       this.isAuthenticated = true;
       localStorage.setItem('userToken', 'token'); // Almacena el token en localStorage
       return true;
