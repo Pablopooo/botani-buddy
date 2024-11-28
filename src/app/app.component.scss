@@ -1,5 +1,27 @@
 ion-menu ion-content {
-  --background: #ffffff;
+  --background: #E8F5E9; /* Verde claro */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.menu-logo-container {
+  text-align: center;
+  flex-grow: 1; /* Permitir que el contenedor del logo crezca para centrarlo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px; /* Añadir un margen superior para despegar el logo del menú */
+}
+
+.menu-logo-container img {
+  width: 150px; /* Ajusta el tamaño del logo */
+  height: auto;
+  display: block;
 }
 
 ion-menu.md ion-content {
@@ -29,17 +51,13 @@ ion-menu.md ion-list#inbox-list {
 ion-menu.md ion-list#inbox-list ion-list-header {
   font-size: 22px;
   font-weight: 600;
-
   min-height: 20px;
 }
 
 ion-menu.md ion-list#labels-list ion-list-header {
   font-size: 16px;
-
   margin-bottom: 18px;
-
   color: #000000;
-
   min-height: 26px;
 }
 
@@ -58,7 +76,7 @@ ion-menu.md ion-item.selected ion-icon {
   color: #2bb929;
 }
 
-// Color de los iconos no olvidar
+// Color de los iconos no seleccionados
 ion-menu.md ion-item ion-icon {
   color: #065d09;
 }
@@ -112,7 +130,6 @@ ion-menu.ios ion-note {
 ion-note {
   display: inline-block;
   font-size: 16px;
-
   color: var(--ion-color-medium-shade);
 }
 
