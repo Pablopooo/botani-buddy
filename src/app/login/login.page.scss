@@ -14,26 +14,19 @@ ion-title {
 
 ion-content {
   --background: #E8F5E9; /* Verde claro */
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 }
 
 .login-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   max-width: 400px;
-}
-
-form {
-  width: 100%;
   padding: 20px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px; /* Añadir margen superior para bajar el formulario */
 }
 
 .logo-container {
@@ -49,6 +42,7 @@ form {
 ion-item {
   --background: transparent;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 ion-label {
@@ -56,7 +50,7 @@ ion-label {
 }
 
 ion-input {
-  --placeholder-color: #A5D6A7; /* Verde claro */
+  --placeholder-color: #000000;
   color: #388E3C; /* Verde medio */
 }
 
@@ -66,6 +60,7 @@ ion-button {
   --background-activated: #2E7D32; /* Verde más oscuro */
   --color: white;
   margin-top: 20px;
+  width: 100%;
 }
 
 ion-button[color="secondary"] {
@@ -73,10 +68,7 @@ ion-button[color="secondary"] {
   --background-hover: #C62828; /* Rojo oscuro */
   --background-activated: #B71C1C; /* Rojo más oscuro */
   --color: white;
-  margin-top: 40px; /* Ajustar margen superior para centrar el botón */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 20px; /* Igual que el botón de Login */
 }
 
 ion-label[color="danger"] {

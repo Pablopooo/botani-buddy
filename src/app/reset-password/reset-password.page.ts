@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 
-
-
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.page.html',
@@ -32,6 +30,10 @@ export class ResetPasswordPage implements OnInit {
     // Actualizar contraseña en el local storage
     localStorage.setItem('contraseña', nuevaContraseña);
     alert('Contraseña actualizada exitosamente');
+    this.navCtrl.navigateBack('/login');
+  }
+
+  goToLogin() {
     this.navCtrl.navigateBack('/login');
   }
 }
