@@ -11,36 +11,38 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-label>Nombre</ion-label>
-    <ion-input [(ngModel)]="planta.common_name" name="common_name"></ion-input>
-  </ion-item>
+  <div class="login-container">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="planta.common_name" name="common_name" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Descripción</ion-label>
-    <ion-textarea [(ngModel)]="planta.description" name="description"></ion-textarea>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="planta.description" name="description"></ion-textarea>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Tipo</ion-label>
-    <ion-select [(ngModel)]="planta.tipo" name="tipo">
-      <ion-select-option *ngFor="let tipo of tiposDePlantas" [value]="tipo">{{ tipo }}</ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Tipo</ion-label>
+      <ion-select [(ngModel)]="planta.tipo" name="tipo">
+        <ion-select-option *ngFor="let tipo of tiposDePlantas" [value]="tipo">{{ tipo }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Tips Propios</ion-label>
-    <ion-textarea [(ngModel)]="planta.tips" name="tips"></ion-textarea>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Tips Propios</ion-label>
+      <ion-textarea [(ngModel)]="planta.tips" name="tips"></ion-textarea>
+    </ion-item>
 
-  <ion-item class="photo-button-container">
-    <ion-label>Foto</ion-label>
-    <ion-button (click)="takePhoto()">Tomar Foto</ion-button>
-  </ion-item>
+    <ion-item class="photo-button-container">
+      <ion-label>Foto</ion-label>
+      <ion-button (click)="takePhoto()">Tomar Foto</ion-button>
+    </ion-item>
 
-  <div class="photo-preview" *ngIf="photo">
-    <img [src]="photo" alt="Foto de la Planta">
+    <div class="photo-preview" *ngIf="photo">
+      <img [src]="photo" alt="Foto de la Planta">
+    </div>
+
+    <ion-button expand="full" (click)="onSubmit()" [disabled]="!planta.common_name">Guardar Planta</ion-button>
   </div>
-
-  <ion-button expand="full" (click)="onSubmit()">Guardar Planta</ion-button>
 </ion-content>

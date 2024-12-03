@@ -31,17 +31,17 @@ ion-content {
 
 .logo-container {
   text-align: center;
-  margin-bottom: 20px; /* Espacio entre el logo y los campos del formulario */
+  margin-bottom: 75px; /* Espacio entre el logo y los campos del formulario */
 }
 
 .logo-container img {
-  width: 100px; /* Ajusta el tamaño del logo */
+  width: 150px; /* Ajusta el tamaño del logo */
   height: auto;
 }
 
 ion-item {
   --background: transparent;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   width: 100%;
 }
 
